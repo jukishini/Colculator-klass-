@@ -4,84 +4,79 @@ class Program
 
     static void Main(string[] args)
     {
-
-        double a;
-        double b;
-        double res = 0;
-        char oper;
+        bool quit =true;
+        float first = 0;
+        float second = 0;
+        float res = 0;
+        string oper;
         do
         {
             do
             {
                 Console.Write("Введите первое число:");
-                if (double.TryParse(Console.ReadLine(), out a))
+                if (float.TryParse(Console.ReadLine(), out first))
                 {
                     break;
                 }
             }
             while (true);
-            // a = Convert.ToDouble();
             Console.Write("Введите знак:");
-            oper = Convert.ToChar(Console.ReadLine());
+            oper =Console.ReadLine();
 
             do
             {
                 Console.Write("Введите второе число:");
-                if (double.TryParse(Console.ReadLine(), out b))
+                if (float.TryParse(Console.ReadLine(), out second))
                 {
                     break;
                 }
             }
-            while (true);///b = Convert.ToDouble(Console.ReadLine());
+            while (true);
+
+            switch (oper)
             {
-                if (oper == '+')
-                {
-                    res = Sum(a, b);
-                }
+                case "+":
+                    {
+                        Console.WriteLine("Сумма чисел составляет: " + (res = Sum(first, second)));
+                        break;
+                    }
+                case "-":
+                    {
+                        Console.WriteLine("Разность чисел состовляет: " + (res = Sub(first, second)));
+                        break;
+                    }
+                case "*":
+                    {
+                        Console.WriteLine("Произведение чисел составляет: " + (res = Mult(first, second)));
+                        break;
+                    }
+                case "/":
+                    {
+                        Console.WriteLine("Отношение чисел составляет:" + (res = Div(first, second)));
+                        break;
+                    }
+                case "L":
+                    {
+                        quit = false; break;
+                    }
 
-                else if (oper == '-')
-                {
-                    res = Sub(a, b);
-                }
-
-                else if (oper == '*')
-                {
-                    res = Mult(a, b);
-                }
-
-                else if (oper == '/')
-                {
-                    res = Div(a, b);
-                    
-                } 
-                else if (oper == 'L')
-                
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Неизвестный знак.");
-                }
-                Console.WriteLine("Результат: {0}", res);
-                Console.WriteLine(); 
             }
         }
-        while (true);
+        while (quit);
     } 
 
 
-    static double Sum(double first,double second)
+    static float Sum(float first, float second)
     {
         return first + second;
     }
-    static double Sub(double first, double second)
+    static float Sub(float first, float second)
     {
         return first - second;
     }
-    static double Div(double first, double second)
+    static float Div(float first, float second)
     {
-        double result;
+        float result;
         if (second == 0)
         {
             Console.WriteLine("На ноль делить нельзя");
@@ -93,14 +88,8 @@ class Program
         }
         return result;
     }
-    static double Mult(double first, double second)
+    static float Mult(float first, float second)
     {
         return first * second;
     }
-}
-    
-
-
-
-
-    
+}  
